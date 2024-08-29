@@ -1,0 +1,11 @@
+.movies-cnt{
+    width: 100%;
+    overflow-x: hidden;
+    .movies{
+        width: 100%;
+        display: flex;
+        overflow-x: scroll;
+        background-color: red;
+    }
+}
+  
