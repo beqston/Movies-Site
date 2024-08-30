@@ -49,6 +49,7 @@
                      height: 100%;
 
                      img{
+                        max-width: 500px;
                         width: fit-content;
                         height: fit-content;
                      }
@@ -339,153 +340,7 @@
     }
 }
 
-@media screen and (max-width: 659px) {
-    .home{
-        .main-content-cnt{  
-            .recomended-cnt{    
-                .recomenden-wrapper{
-                    .div{
-                        max-width: 27rem;
-                        .item{
-                            a{
-                                img{
-                                    max-width: 27rem;
-                                }
-                            }
-                        }
-    
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-@media screen and (max-width: 602px) {
-    .home{
-        .main-content-cnt{  
-            .trending-cnt{ 
-                .trend{
-                    .trending-items{
-                       a{
-                         img{
-                            width:24rem;
-                         }
-                       }
-                    }
-                }
-            }
-
-            .recomended-cnt{    
-                .recomenden-wrapper{
-                    width: fit-content;
-                    .div{
-                        max-width: 34rem;
-                        .item{
-                            a{
-                                img{
-                                    max-width: 34rem;
-                                }
-                            }
-                        }
-    
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-
-@media screen and (max-width: 498px){
-.home{
-    .side-bar-cnt{
-       width: 100%;
-       transform: translateX(-2rem);
-    }
-    .main-content-cnt{
-        .input-cnt{
-            width: 17rem;
-        }
-        .trending-cnt{ 
-            padding-top: 2rem;
-            h2{
-                font-size: 2rem;
-            }
-            .trend{
-                display: flex;
-                
-                .trending-items{
-                   position: relative;
-                   a{
-                     width: 24rem;
-
-                     img{
-                        width:24rem ;
-                     }
-                   }
-
-                   .title{
-                        bottom: -2rem;
-                        left: 2%;
-                        .top{
-                            font-size: 1.2rem;
-                        }
-
-                        .bottom{
-                            font-size: 1.5rem;
-                        }
-                    }
-                }
-            }
-        }
-
-        .recomended-cnt{
-            padding-top: 2rem;
-            h2{
-                font-size: 2rem;
-            }
-            .recomenden-wrapper{
-                width: 100%;
-                display: flex;
-                justify-content: flex-start;
-                row-gap: 0.4rem;
-                .div{
-                    width: 40%;
-                    min-width: 14rem;
-                    .item{
-                        width: 16.4rem;
-                        a{
-                            img{
-                                max-width: 16.4rem;
-                            }
-                        }
-                    }
-
-                    .top{
-
-                        gap: 0.8rem;
-                        p{
-                            font-size: 1.2rem;
-                        }
-                    }
-
-                    .bottom{
-                        padding-top: 1rem;
-                        h2{
-                            font-size: 1.4rem;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-}
-
-@media screen and (max-width: 498px){
+@media screen and (max-width: 684px){
     .home{
         .side-bar-cnt{
            width: 100%;
@@ -539,13 +394,13 @@
                     justify-content: flex-start;
                     row-gap: 0.4rem;
                     .div{
-                        width: 40%;
+                        width: 24rem;
                         min-width: 14rem;
                         .item{
-                            width: 28rem;
+                            max-width: 24rem;
                             a{
                                 img{
-                                    max-width: 28rem;
+                                    max-width: 24rem;
                                 }
                             }
                         }
@@ -572,6 +427,65 @@
     }
 
 
+@media screen and (max-width: 602px) {
+    .home{
+        .main-content-cnt{  
+            .trending-cnt{ 
+                .trend{
+                    .trending-items{
+                       a{
+                         img{
+                            width:24rem;
+                         }
+                       }
+                    }
+                }
+            }
+
+            .recomended-cnt{    
+                .recomenden-wrapper{
+                    .div{
+                        max-width: 21rem;
+                        .item{
+                            width: 21rem;
+                            a{
+                                img{
+                                    max-width: 21rem;
+                                }
+                            }
+                        }
+    
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 523px) {
+    .home{
+        .main-content-cnt{  
+            .recomended-cnt{    
+                .recomenden-wrapper{
+                    min-width: 34rem;
+                    .div{
+                        .item{
+                            a{
+                                img{
+                                    max-width: 34rem;
+                                }
+                            }
+                        }
+                        .bookmaker{
+                            right: -10rem;
+                        }
+    
+                    }
+                }
+            }
+        }
+    }
+}
     @media screen and (max-width: 498px){
         .home{
             .main-content-cnt{
@@ -579,6 +493,7 @@
                     .recomenden-wrapper{
                         .div{
                             width: fit-content;
+                            min-width: fit-content;
                             .item{
                                 max-width: 28rem;
                                 a{
@@ -587,9 +502,50 @@
                                     }
                                 }
                             }
+                            .bookmaker{
+                                right: -20%;
+                            }
                         }
                     }
                 }
             }
         }
         }
+
+        @media screen and (max-width: 348px){
+            .home{
+                .main-content-cnt{
+                    .trending-cnt{ 
+                        .trend{
+                            .trending-items{
+                               a{
+                                 img{
+                                    max-width:20rem;
+                                 }
+                               }
+                            }
+                            .bookmaker{
+                                right: 4%;
+                            }
+                        }
+                    }
+                    .recomended-cnt{
+                        .recomenden-wrapper{
+                            .div{
+                                .item{
+                                    max-width: 20rem;
+                                    a{
+                                        img{
+                                            max-width: 20rem;
+                                        }
+                                    }
+                                }
+                                .bookmaker{
+                                    right: 2%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            }

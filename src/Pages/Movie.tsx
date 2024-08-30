@@ -19,7 +19,7 @@ const Movie = ()=> {
 
 
     return(
-        <main>
+        <main style={{minHeight:"120vh"}}>
 
             {
                 movies?.filter((item)=> item.title === movieTitle).map((movie)=> {
@@ -28,7 +28,6 @@ const Movie = ()=> {
                             <h1>{movie.title}</h1>
                             <h3>{movie.category}</h3>
                             <p>{movie.year}</p>
-
                             <Link to={"/"}>Back To Home</Link>
                         </div>
                     )

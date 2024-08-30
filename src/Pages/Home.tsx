@@ -51,7 +51,11 @@ const Home = ()=> {
                                             item.isTrending &&
                                                 <div className={classname["trending-items"]} key={item.title}>
                                                     <Link to={`http://localhost:5173/movie/${item.title}`}>
-                                                        <img src={item.thumbnail.trending?.small} alt="Photo" />
+                                                        <picture>
+                                                            <img src={`http://localhost:5173/${item.thumbnail.trending?.large}`} alt="photo" />
+                                                            <source media="(min-width: 768px) and (max-width: 1024px)" srcSet={`http://localhost:5173/${item.thumbnail.trending?.large}`}/>
+                                                            <source media="(max-width: 768px)" srcSet={`http://localhost:5173/${item.thumbnail.trending?.small}`}/>
+                                                        </picture>
                                                     </Link>
 
                                                     <div className={classname["title"]}>
@@ -102,7 +106,11 @@ const Home = ()=> {
                                 <div className={classname["div"]} key={item.title}>
                                     <div className={classname["item"]}>
                                         <Link to={`http://localhost:5173/movie/${item.title}`}>
-                                            <img src={item.thumbnail.regular.large} alt="Photo" />
+                                            <picture>
+                                                <img src={`http://localhost:5173/${item.thumbnail.regular.large}`} alt="photo" />
+                                                <source media="(min-width: 768px) and (max-width: 1024px)" srcSet={`http://localhost:5173/${item.thumbnail.regular.medium}`}/>
+                                                <source media="(max-width: 768px)" srcSet={`http://localhost:5173/${item.thumbnail.regular.small}`}/>
+                                            </picture>
                                         </Link>
 
                                         <div className={classname["top"]}>
