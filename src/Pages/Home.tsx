@@ -99,7 +99,7 @@ const Home = ()=> {
                     {
                         movies?.filter((item)=>!item.isTrending).map((item)=> {
                             return(
-                                <div key={item.title}>
+                                <div className={classname["div"]} key={item.title}>
                                     <div className={classname["item"]}>
                                         <Link to={`http://localhost:5173/movie/${item.title}`}>
                                             <img src={item.thumbnail.regular.large} alt="Photo" />
@@ -128,11 +128,8 @@ const Home = ()=> {
                         })
                     }
                 </div>
-
-
             </section>
 
-       
         </div>
 
         

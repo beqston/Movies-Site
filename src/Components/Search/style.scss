@@ -3,12 +3,10 @@
     display: flex;
     position: relative;
     .search-input{
-        border: 1px solid grey;
         width: 100%;
         background-color: var(--lite-black);
         padding: 1rem;
-        border-radius: 20px;
-        outline: none;
+        all: unset;
         padding-left: 7rem;
         color: white;
         font-size: 2.4rem;
@@ -22,6 +20,7 @@
         padding-right: 3rem;
         opacity: 0.5;
         font-weight: 400;
+        transform: translateX(-4rem);
     }
     .search-img{
         max-width: 2.4rem;
@@ -30,5 +29,23 @@
         left: 1rem;
         top: 1rem;
         cursor: pointer;
+        transform: translateY(-8px);
     }
-}                                                                                
+}      
+
+@media screen and (max-width: 498px) {
+    .search-input-wraper{  
+        .search-input{
+            padding: 1rem;
+            padding-left: 7rem;
+            font-size: 1.6rem;
+        }
+        .search-input::placeholder{
+            font-size: 1.6rem;
+            padding-right: 1rem;
+        }
+        .search-img{
+            transform: translateY(-4px);
+        }
+    }                                                             
+}

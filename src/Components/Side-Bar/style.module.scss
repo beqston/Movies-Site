@@ -32,3 +32,32 @@
         padding-bottom: 3rem;
     }
 }
+
+@media screen and (max-width: 978px){
+    .side-bar{
+        height: 7.2rem;
+        max-height: 70px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 2.4rem;
+        padding-right: 2.4rem;
+    
+        .movie{
+            padding-bottom: 0rem;
+            padding-top: 0rem;
+        }
+        .menu{
+            flex-direction: row;
+            column-gap: 2rem;
+            padding-bottom: 0rem;
+            img{
+                width: 2.4rem;
+                height: 2rem;
+            }
+        }
+        .profile{
+            padding-bottom: 0rem;
+        }
+    }
+}
