@@ -96,7 +96,33 @@
                     }
                 }
 
+                .trend-play{
+                    width: 12rem;
+                    background-color: rgba(128, 128, 128, 0.51);
+                    border-radius: 20px;
+                    padding: 10px 12px;
+                    display: flex;
+                    position: absolute;
+                    top:40%;
+                    left: 40%;
+                    // display: none;
+                    
+                    a{
+                        color: white;
+                        text-decoration: none;
+                        display: flex;
+                        justify-content: flex-start;
+                        padding-left: 1rem;
+                        align-items: center;
+                        column-gap: 1.3rem;
+                    }
+                }
+
             }
+            .trend:has(:hover) .trend-play{
+                transition: 0.8s;
+            }
+
             .trend::-webkit-scrollbar-thumb {
                 background: grey;
                 border-radius: 10px;

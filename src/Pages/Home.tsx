@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 import bookmaker from "../assets/Photos/Bookmark.png"
 import oval from "../assets/Photos/Oval.png"
 import moveIcon from "../assets/Photos/movieIcon.png"
+import play from "../assets/Photos/play.svg"
 
 
 const Home = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
+    const [trendPlay, setTrendPlay] = useState<number>()
+
+    const handlPlayTrend = (index:number)=> {
+        setTrendPlay(index)
+    }
 
     const getData = async ()=> {
         const res = await fetch("http://localhost:5173/data.json")
@@ -42,14 +48,15 @@ const Home = ()=> {
 
                 
                 <article className={classname["trend"]}>
+         
 
                         {
-                            movies?.map((item)=>{
+                            movies?.map((item, index)=>{
                                 return(
                                     <>
                                         {
                                             item.isTrending &&
-                                                <div className={classname["trending-items"]} key={item.title}>
+                                                <div onMouseOver={()=>handlPlayTrend(index)} className={classname["trending-items"]} key={item.title}>
                                                     <Link to={`http://localhost:5173/movie/${item.title}`}>
                                                         <picture>
                                                             <img src={`http://localhost:5173/${item.thumbnail.trending?.large}`} alt="photo" />
@@ -80,6 +87,25 @@ const Home = ()=> {
                                                     <div className={classname["bookmaker"]}>
                                                         <img src={bookmaker} alt="Photo" />
                                                     </div>
+
+                                                   {
+                                                        trendPlay === index &&
+                                                        <div className={classname["trend-play"]}>
+                                                            <Link to={`http://localhost:5173/movie/${item.title}`}> 
+                                                            <img src={play} alt="play" />
+                                                            <span>Play</span>
+                                                        </Link>
+                                                     </div>
+                                                    } 
+
+                                                        {/* <div className={classname["trend-play"]}>
+                                                            <Link to={`http://localhost:5173/movie/${item.title}`}> 
+                                                            <img src={play} alt="play" />
+                                                            <span>Play</span>
+                                                        </Link>
+                                                     </div> */}
+
+                                                  
                                                 </div>
                                         }
                                     </>
@@ -137,6 +163,8 @@ const Home = ()=> {
                     }
                 </div>
             </section>
+
+
 
         </div>
 
