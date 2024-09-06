@@ -13,11 +13,16 @@ import play from "../assets/Photos/play.svg"
 const Home = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
-    const [trendPlay, setTrendPlay] = useState<number>()
+    const [trendPlay, setTrendPlay] = useState<number>();
+    const [recomended, setRecomended] = useState<number>();
 
     const handlPlayTrend = (index:number)=> {
         setTrendPlay(index)
     }
+    const handlRecomended = (index:number)=> {
+        setRecomended(index);
+    }
+
 
     const getData = async ()=> {
         const res = await fetch("http://localhost:5173/data.json")
@@ -56,7 +61,7 @@ const Home = ()=> {
                                     <>
                                         {
                                             item.isTrending &&
-                                                <div onMouseOver={()=>handlPlayTrend(index)} className={classname["trending-items"]} key={item.title}>
+                                                <div onMouseLeave={()=> setTrendPlay(-1)} onMouseOver={()=>handlPlayTrend(index)} className={classname["trending-items"]} key={item.title}>
                                                     <Link to={`http://localhost:5173/movie/${item.title}`}>
                                                         <picture>
                                                             <img src={`http://localhost:5173/${item.thumbnail.trending?.large}`} alt="photo" />
@@ -98,14 +103,6 @@ const Home = ()=> {
                                                      </div>
                                                     } 
 
-                                                        {/* <div className={classname["trend-play"]}>
-                                                            <Link to={`http://localhost:5173/movie/${item.title}`}> 
-                                                            <img src={play} alt="play" />
-                                                            <span>Play</span>
-                                                        </Link>
-                                                     </div> */}
-
-                                                  
                                                 </div>
                                         }
                                     </>
@@ -127,9 +124,9 @@ const Home = ()=> {
 
                 <div className={classname["recomenden-wrapper"]}>
                     {
-                        movies?.filter((item)=>!item.isTrending).map((item)=> {
+                        movies?.filter((item)=>!item.isTrending).map((item, index)=> {
                             return(
-                                <div className={classname["div"]} key={item.title}>
+                                <div onMouseLeave={()=> setRecomended(-1)} onMouseOver={()=> handlRecomended(index)} className={classname["div"]} key={item.title}>
                                     <div className={classname["item"]}>
                                         <Link to={`http://localhost:5173/movie/${item.title}`}>
                                             <picture>
@@ -157,6 +154,17 @@ const Home = ()=> {
                                     <div className={classname["bookmaker"]}>
                                         <img src={bookmaker} alt="Photo" />
                                     </div>
+
+                                    {
+                                        recomended === index && (
+                                            <div className={classname["recomended-play"]}>
+                                                <Link to={`http://localhost:5173/movie/${item.title}`}> 
+                                                    <img src={play} alt="play" />
+                                                    <span>Play</span>
+                                                </Link>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             )
                         })
