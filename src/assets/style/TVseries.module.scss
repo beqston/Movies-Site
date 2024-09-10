@@ -1,4 +1,4 @@
-.movies-cnt{
+.TVseries-cnt{
     width: 100%;
     display: flex;
     background-color: var(--lite-black);
@@ -13,7 +13,7 @@
         margin-left: 3.2rem;
     }
 
-    .movies-main-cnt{
+    .TVseries-main-cnt{
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -32,13 +32,13 @@
             padding-top: 3.4rem;
         }
 
-        .movies{
+        .TVseries{
             width: 102%;
             display: flex;
             flex-wrap: wrap;
             gap: 3%;
             row-gap: 3.2rem;
-            .movies-item-cnt{
+            .TVseries-item-cnt{
                 display: flex;
                 flex-direction: column;
                 width: 22%;
@@ -98,13 +98,13 @@
                 }
             }
 
-            .movies-item-cnt:hover{
+            .TVseries-item-cnt:hover{
                 transition: 0.8s;
                 transform: scale(1.04);
             }
 
 
-            .movies-play{
+            .TVseries-play{
                 width: 40%;
                 background-color: rgba(128, 128, 128, 0.51);
                 border-radius: 20px;
@@ -139,7 +139,7 @@
 
 
 @media screen  and (max-width:977px) {
-    .movies-cnt{
+    .TVseries-cnt{
         padding-right: 2.7rem;
         padding-bottom: 4rem;
         flex-direction: column;
@@ -151,12 +151,15 @@
             margin-left: 2.5rem;
         }
     
-        .movies-main-cnt{
+        .TVseries-main-cnt{
             padding-left: 3rem;
+            h2{
+                font-size: 2rem;
+            }
     
-            .movies{
+            .TVseries{
                 width: 100%;
-                .movies-item-cnt{
+                .TVseries-item-cnt{
                     width: 30%;
                     .title{
                         .top{
@@ -169,7 +172,7 @@
                     }
                 }
     
-                .movies-play{
+                .TVseries-play{
                     width: 40%;
                     top: 5.2rem;
                 }
@@ -180,27 +183,22 @@
 
 
 @media screen  and (max-width:580px) {
-    .movies-cnt{
+    .TVseries-cnt{
         padding-right: 0rem;
         padding-bottom: 3rem;
-
         .side-bar-cnt{
             width: 100%;
             margin-top: 0rem;
             margin-left: 0rem;
         }
     
-        .movies-main-cnt{
+        .TVseries-main-cnt{
             padding-left: 1.6rem;
             padding-right: 1.6rem;
-
-            h2{
-                font-size: 2rem;
-            }
     
-            .movies{
+            .TVseries{
                 justify-content: space-between;
-                .movies-item-cnt{
+                .TVseries-item-cnt{
                     width: 47%;
                     .title{
                         .top{
@@ -213,7 +211,7 @@
                     }
                 }
     
-                .movies-play{
+                .TVseries-play{
                     width: fit-content;
                     top: 4rem;
                     right: 4rem;
@@ -226,10 +224,10 @@
     }
 }
 @media screen  and (max-width:370px) {
-    .movies-cnt{
-        .movies-main-cnt{
-            .movies{
-                .movies-play{
+    .TVseries-cnt{
+        .TVseries-main-cnt{
+            .TVseries{
+                .TVseries-play{
                     width: fit-content;
                     top: 2.4rem;
                     transform: translateX(-1rem);

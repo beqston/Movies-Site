@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Movies from "../Pages/Movies";
 import ScrottToTop from "./Scroll";
 import Movie from "../Pages/Movie";
+import TVseries from "../Pages/TVseries";
 
 
 
@@ -18,6 +19,7 @@ const RouterComponent = ()=> {
                     <Route path={"/"} element={<Home />} />
                     <Route path={"/movies"} element={<Movies />} />
                     <Route path={"/movie/:movieTitle"} element={<Movie />} />
+                    <Route path={"/tv-series"} element={<TVseries />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -22,7 +22,7 @@ const SideBar = ()=> {
             <div className={classname["menu"]}>
                 <img onClick={()=>navigate("/")} src={burg} alt="photo"/>
                 <img onClick={()=>navigate("/movies")} src={film}  alt="photo"/>
-                <img src={tv} alt="photo" />
+                <img onClick={()=> navigate("/tv-series")} src={tv} alt="photo" />
                 <img src={bookmark} alt="photo" />
             </div>
 

@@ -1,4 +1,4 @@
-import classname from "../assets/style/movies.module.scss"
+import classname from "../assets/style/TVseries.module.scss"
 import { useEffect, useState } from "react";
 import { Data } from "../Types/Types";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import moveIcon from "../assets/Photos/movieIcon.png"
 import play from "../assets/Photos/play.svg"
 
 
-const Movies = ()=> {
+const TVseries = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
     const [moviesPlay, setMoviesPlay] = useState<number>();
@@ -32,28 +32,28 @@ const Movies = ()=> {
 
 
     return(
-        <main className={classname["movies-cnt"]}>
+        <main className={classname["TVseries-cnt"]}>
             
             <aside className={classname["side-bar-cnt"]}>
                 <SideBar />
             </aside>
 
-            <div className={classname["movies-main-cnt"]}>
+            <div className={classname["TVseries-main-cnt"]}>
 
                 <div className={classname["input-cnt"]}>
                     <Search />
                 </div>
 
-                <h2>Movies</h2>
+                <h2>TV Series</h2>
 
 
-                <div className={classname["movies"]}>
+                <div className={classname["TVseries"]}>
 
             
                     {
-                        movies?.filter((item)=> item.category.includes("Movie")).map((item, index)=>{
+                        movies?.filter((item)=> item.category.includes("TV Series")).map((item, index)=>{
                             return(
-                                <div onMouseLeave={()=> setMoviesPlay(-1)} onMouseOver={()=>handlMoviesPlay(index)} className={classname["movies-item-cnt"]}>
+                                <div onMouseLeave={()=> setMoviesPlay(-1)} onMouseOver={()=>handlMoviesPlay(index)} className={classname["TVseries-item-cnt"]}>
                                     <Link to={`http://localhost:5173/movie/${item.title}`}>
                                         <picture>
                                             <img src={`http://localhost:5173/${item.thumbnail.regular.large}`} alt="photo" />
@@ -80,7 +80,7 @@ const Movies = ()=> {
 
                                     {
                                         moviesPlay === index &&
-                                        <div className={classname["movies-play"]}>
+                                        <div className={classname["TVseries-play"]}>
                                             <Link to={`http://localhost:5173/movie/${item.title}`}> 
                                             <img src={play} alt="play" />
                                             <span>Play</span>
@@ -105,4 +105,4 @@ const Movies = ()=> {
     )
 }
 
-export default Movies;
+export default TVseries;
