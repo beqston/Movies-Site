@@ -15,6 +15,8 @@ const Bookmark = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
     const [moviesPlay, setMoviesPlay] = useState<number>();
+    let bookmarkLoading = false;
+    
 
     const {bookmarkMovies, bookmarkTVSeries} = useContext(BookmarkContext) as BookmarkContextType;
 
@@ -33,9 +35,20 @@ const Bookmark = ()=> {
         getData()
     },[])
 
+    if(bookmarkMovies || bookmarkTVSeries){
+        bookmarkLoading = true
+    }
+
+    // if(bookmarkMovies){
+    //     bookmarkLoading = true
+    // }
+
+
 
     return(
         <main className={classname["bookmark-cnt"]}>
+
+
             
             <aside className={classname["side-bar-cnt"]}>
                 <SideBar />
@@ -49,7 +62,13 @@ const Bookmark = ()=> {
 
                 <div className={classname["bookmark-section-cnt"]}>
 
-                    <h2>Bookmarked Movies</h2>
+                    {
+                        !bookmarkLoading && <h2>Bookmark Not Found</h2>
+                    }
+
+                    {
+                        bookmarkMovies && <h2>Bookmarked Movies</h2>
+                    }
 
                     <div className={classname["movies"]}>
 
@@ -99,7 +118,9 @@ const Bookmark = ()=> {
                     </div>
                     <br />
 
-                        <h2>Bookmarked TV Series</h2>
+                        {
+                            bookmarkTVSeries && <h2>Bookmarked TV Series</h2>
+                        }
 
                         <div className={classname["movies"]}>
 
