@@ -136,6 +136,17 @@
 
 }
   
+@media screen  and (max-width:1400px) {
+    .movies-cnt{
+        .movies-main-cnt{
+            .movies{
+                .movies-play{
+                    top: 4.8rem;
+                }
+            }
+        }
+    }
+}
 
 
 @media screen  and (max-width:977px) {

@@ -1,5 +1,5 @@
 import classname from "../assets/style/TVseries.module.scss"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Data } from "../Types/Types";
 import { Link } from "react-router-dom";
 import SideBar from "../Components/Side-Bar/SideBar";
@@ -8,12 +8,16 @@ import bookmaker from "../assets/Photos/Bookmark.png"
 import oval from "../assets/Photos/Oval.png"
 import moveIcon from "../assets/Photos/movieIcon.png"
 import play from "../assets/Photos/play.svg"
+import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext";
 
 
 const TVseries = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
     const [moviesPlay, setMoviesPlay] = useState<number>();
+
+    const {addBookmark} = useContext(BookmarkContext) as BookmarkContextType;
+
 
     const handlMoviesPlay = (index: number)=>{
         setMoviesPlay(index)
@@ -74,7 +78,7 @@ const TVseries = ()=> {
                                         <h2>{item.title}</h2>
                                     </div>
 
-                                    <div className={classname["bookmaker"]}>
+                                    <div onClick={()=> addBookmark(item)} className={classname["bookmaker"]}>
                                         <img src={bookmaker} alt="Photo" />
                                     </div>
 

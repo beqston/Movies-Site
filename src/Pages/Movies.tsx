@@ -1,5 +1,5 @@
 import classname from "../assets/style/movies.module.scss"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Data } from "../Types/Types";
 import { Link } from "react-router-dom";
 import SideBar from "../Components/Side-Bar/SideBar";
@@ -8,12 +8,16 @@ import bookmaker from "../assets/Photos/Bookmark.png"
 import oval from "../assets/Photos/Oval.png"
 import moveIcon from "../assets/Photos/movieIcon.png"
 import play from "../assets/Photos/play.svg"
+import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext";
 
 
 const Movies = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
     const [moviesPlay, setMoviesPlay] = useState<number>();
+    const {addBookmark} = useContext(BookmarkContext) as BookmarkContextType;
+
+    
 
     const handlMoviesPlay = (index: number)=>{
         setMoviesPlay(index)
@@ -53,7 +57,8 @@ const Movies = ()=> {
                     {
                         movies?.filter((item)=> item.category.includes("Movie")).map((item, index)=>{
                             return(
-                                <div onMouseLeave={()=> setMoviesPlay(-1)} onMouseOver={()=>handlMoviesPlay(index)} className={classname["movies-item-cnt"]}>
+
+                                <div key={item.title} onMouseLeave={()=> setMoviesPlay(-1)} onMouseOver={()=>handlMoviesPlay(index)} className={classname["movies-item-cnt"]}>
                                     <Link to={`http://localhost:5173/movie/${item.title}`}>
                                         <picture>
                                             <img src={`http://localhost:5173/${item.thumbnail.regular.large}`} alt="photo" />
@@ -74,7 +79,7 @@ const Movies = ()=> {
                                         <h2>{item.title}</h2>
                                     </div>
 
-                                    <div className={classname["bookmaker"]}>
+                                    <div onClick={()=> addBookmark(item)} className={classname["bookmaker"]}>
                                         <img src={bookmaker} alt="Photo" />
                                     </div>
 
@@ -98,9 +103,6 @@ const Movies = ()=> {
                 </div>
 
             </div>
-
-
-
         </main>
     )
 }

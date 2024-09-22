@@ -1,13 +1,14 @@
 import classname from "../assets/style/home.module.scss"
 import SideBar from "../Components/Side-Bar/SideBar";
 import Search from "../Components/Search/Search";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Data } from "../Types/Types";
 import { Link } from "react-router-dom";
 import bookmaker from "../assets/Photos/Bookmark.png"
 import oval from "../assets/Photos/Oval.png"
 import moveIcon from "../assets/Photos/movieIcon.png"
 import play from "../assets/Photos/play.svg"
+import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext";
 
 
 const Home = ()=> {
@@ -15,6 +16,9 @@ const Home = ()=> {
     const [movies, setMovies] = useState<Data[] | null>(null);
     const [trendPlay, setTrendPlay] = useState<number>();
     const [recomended, setRecomended] = useState<number>();
+
+    const {addBookmark} = useContext(BookmarkContext) as BookmarkContextType;
+
 
     const handlPlayTrend = (index:number)=> {
         setTrendPlay(index)
@@ -89,7 +93,7 @@ const Home = ()=> {
                                                         
                                                     </div>
 
-                                                    <div className={classname["bookmaker"]}>
+                                                    <div onClick={()=> addBookmark(item)} className={classname["bookmaker"]}>
                                                         <img src={bookmaker} alt="Photo" />
                                                     </div>
 
@@ -151,7 +155,7 @@ const Home = ()=> {
                                         </div>
                                     </div>
 
-                                    <div className={classname["bookmaker"]}>
+                                    <div onClick={()=> addBookmark(item)} className={classname["bookmaker"]}>
                                         <img src={bookmaker} alt="Photo" />
                                     </div>
 
