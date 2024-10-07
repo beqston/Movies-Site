@@ -15,6 +15,7 @@ const Bookmark = ()=> {
 
     const [movies, setMovies] = useState<Data[] | null>(null);
     const [moviesPlay, setMoviesPlay] = useState<number>();
+    const [moviesPlayTV, setMoviesPlayTV] = useState<number>();
     let bookmarkLoading = false;
     
 
@@ -22,6 +23,10 @@ const Bookmark = ()=> {
 
     const handlMoviesPlay = (index: number)=>{
         setMoviesPlay(index)
+    }
+
+    const handlMoviesPlayTV = (index: number)=>{
+        setMoviesPlayTV(index)
     }
 
 
@@ -38,12 +43,6 @@ const Bookmark = ()=> {
     if(bookmarkMovies || bookmarkTVSeries){
         bookmarkLoading = true
     }
-
-    // if(bookmarkMovies){
-    //     bookmarkLoading = true
-    // }
-
-
 
     return(
         <main className={classname["bookmark-cnt"]}>
@@ -130,7 +129,7 @@ const Bookmark = ()=> {
                             bookmarkTVSeries?.map((item, index)=>{
                                 return(
 
-                                    <div key={item.title} onMouseLeave={()=> setMoviesPlay(-1)} onMouseOver={()=>handlMoviesPlay(index)} className={classname["movies-item-cnt"]}>
+                                    <div key={item.title} onMouseLeave={()=> setMoviesPlayTV(-1)} onMouseOver={()=>handlMoviesPlayTV(index)} className={classname["movies-item-cnt"]}>
                                         <Link to={`http://localhost:5173/movie/${item.title}`}>
                                             <picture>
                                                 <img src={`http://localhost:5173/${item.thumbnail.regular.large}`} alt="photo" />
@@ -156,7 +155,7 @@ const Bookmark = ()=> {
                                         </div>
 
                                         {
-                                            moviesPlay === index &&
+                                            moviesPlayTV === index &&
                                             <div className={classname["movies-play"]}>
                                                 <Link to={`http://localhost:5173/movie/${item.title}`}> 
                                                 <img src={play} alt="play" />
