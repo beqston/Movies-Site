@@ -17,9 +17,11 @@ const Bookmark = ()=> {
     const [moviesPlay, setMoviesPlay] = useState<number>();
     const [moviesPlayTV, setMoviesPlayTV] = useState<number>();
     let bookmarkLoading = false;
+
+  
     
 
-    const {bookmarkMovies, bookmarkTVSeries} = useContext(BookmarkContext) as BookmarkContextType;
+    const {bookmarkMovies, bookmarkTVSeries, removeBookmark} = useContext(BookmarkContext) as BookmarkContextType;
 
     const handlMoviesPlay = (index: number)=>{
         setMoviesPlay(index)
@@ -40,8 +42,11 @@ const Bookmark = ()=> {
         getData()
     },[])
 
-    if(bookmarkMovies || bookmarkTVSeries){
+    
+    if(bookmarkMovies?.length !==0 || bookmarkTVSeries?.length !==0){
         bookmarkLoading = true
+    }else{
+        bookmarkLoading = false
     }
 
     return(
@@ -64,9 +69,10 @@ const Bookmark = ()=> {
                     {
                         !bookmarkLoading && <h2>Bookmark Not Found</h2>
                     }
+                    
 
                     {
-                        bookmarkMovies && <h2>Bookmarked Movies</h2>
+                        bookmarkMovies?.length !==0 && <h2>Bookmarked Movies</h2>
                     }
 
                     <div className={classname["movies"]}>
@@ -97,7 +103,7 @@ const Bookmark = ()=> {
                                         </div>
 
                                         <div className={classname["bookmaker"]}>
-                                            <img src={bookmaker} alt="Photo" />
+                                            <img onClick={()=> removeBookmark(item)} src={bookmaker} alt="Photo" />
                                         </div>
 
                                         {
@@ -118,7 +124,7 @@ const Bookmark = ()=> {
                     <br />
 
                         {
-                            bookmarkTVSeries && <h2>Bookmarked TV Series</h2>
+                            bookmarkTVSeries?.length !==0 && <h2>Bookmarked TV Series</h2>
                         }
 
                         <div className={classname["movies"]}>
@@ -151,7 +157,7 @@ const Bookmark = ()=> {
                                         </div>
 
                                         <div className={classname["bookmaker"]}>
-                                            <img src={bookmaker} alt="Photo" />
+                                            <img onClick={()=> removeBookmark(item)} src={bookmaker} alt="Photo" />
                                         </div>
 
                                         {
