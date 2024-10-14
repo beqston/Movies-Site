@@ -4,6 +4,8 @@ import { Data } from "../Types/Types";
 export interface BookmarkContextType {
     bookmarkMovies: Data[] | null;
     bookmarkTVSeries: Data[] | null;
+    searchText: string;
+    setSearchText: React.Dispatch<React.SetStateAction<string>>;
     setBookmarkMovies: React.Dispatch<React.SetStateAction<Data[] | null>>;
     setBookmarkTVSeries: React.Dispatch<React.SetStateAction<Data[] | null>>;
     addBookmark: (item: Data) => void; 
@@ -15,24 +17,30 @@ export const BookmarkContext = createContext<BookmarkContextType | undefined>(un
 
 
 const BookmarkContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [bookmarkMovies, setBookmarkMovies] = useState<Data[] | null>(null);
-    const [bookmarkTVSeries, setBookmarkTVSeries] = useState<Data[] | null>(null);
+    const [bookmarkMovies, setBookmarkMovies] = useState<Data[]>([]);
+    const [bookmarkTVSeries, setBookmarkTVSeries] = useState<Data[]>([]);
+
+    const [searchText, setSearchText] = useState("");
 
     const addBookmark = (item: Data)=> {
-        if(bookmarkMovies === null && item.category === "Movie"){
-            setBookmarkMovies([ item])
-        }
-        if(bookmarkMovies !== null && item.category === "Movie"){
-            setBookmarkMovies([...bookmarkMovies, item])
+        if(item.category === "Movie"){
+            setBookmarkMovies((prev) => {
+                if (!prev) return [item]; 
+                if (prev.some(existingItem  => existingItem.title === item.title)) return prev; 
+                return [...prev, item]; 
+            });
         }
 
-        if(bookmarkTVSeries === null && item.category === "TV Series"){
-            setBookmarkTVSeries([item])
-        }
-        if(bookmarkTVSeries !== null && item.category === "TV Series"){
-            setBookmarkTVSeries([...bookmarkTVSeries, item])
+        if(item.category === "TV Series"){
+            setBookmarkTVSeries((prev)=> {
+                if(!prev) return [item]
+                if(prev.some((existingItem )=> existingItem.title == item.title)) return prev;
+                return [...prev, item]
+            })
         }
     }
+
+
 
     const removeBookmark = (item: Data)=> {
         if(bookmarkMovies){
@@ -45,11 +53,11 @@ const BookmarkContextProvider = ({ children }: { children: React.ReactNode }) =>
                 setBookmarkTVSeries([...bookmarkTVSeries?.filter((tv)=> tv !== item)])
             }
         }
-
     }
 
+
     return (
-        <BookmarkContext.Provider value={{ bookmarkMovies, bookmarkTVSeries, setBookmarkMovies, setBookmarkTVSeries, addBookmark, removeBookmark }}>
+        <BookmarkContext.Provider value={{ bookmarkMovies, bookmarkTVSeries, setBookmarkMovies, setBookmarkTVSeries, addBookmark, removeBookmark, searchText, setSearchText }}>
             {children}
         </BookmarkContext.Provider>
     );

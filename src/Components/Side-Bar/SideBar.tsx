@@ -6,21 +6,31 @@ import tv from "../../assets/Photos/side-bar/tv.png"
 import bookmark from "../../assets/Photos/side-bar/Bookmark.png"
 import profileImg from "../../assets/Photos/side-bar/profileImg.png"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { BookmarkContext, BookmarkContextType } from "../../Context/BookmarkContext"
 
 const SideBar = ()=> {
 
     const navigate = useNavigate();
 
+    const { setSearchText} = useContext(BookmarkContext) as BookmarkContextType;
+
+    
+    const handlClearSearchText = ()=> {
+        setSearchText("")
+        console.log("cl")
+    }
+
     return(
 
-        <aside className={classname["side-bar"]}>
+        <aside onClick={handlClearSearchText} className={classname["side-bar"]}>
 
             <div onClick={()=>navigate("/")} className={classname["movie"]}>
                 <img src={movie} alt="photo" />
             </div>
             
-            <div className={classname["menu"]}>
-                <img onClick={()=>navigate("/")} src={burg} alt="photo"/>
+            <div onChangeCapture={handlClearSearchText} className={classname["menu"]}>
+                <img onClick={()=>{navigate("/")}} src={burg} alt="photo"/>
                 <img onClick={()=>navigate("/movies")} src={film}  alt="photo"/>
                 <img onClick={()=> navigate("/tv-series")} src={tv} alt="photo" />
                 <img onClick={()=> navigate("/bookmark")} src={bookmark} alt="photo" />

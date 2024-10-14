@@ -42,13 +42,13 @@ const Bookmark = ()=> {
         getData()
     },[])
 
-    
-    if(bookmarkMovies?.length !==0 || bookmarkTVSeries?.length !==0){
+
+    if(bookmarkMovies?.length != 0 || bookmarkTVSeries?.length != 0){
         bookmarkLoading = true
     }else{
-        bookmarkLoading = false
+        bookmarkLoading =false
     }
-
+    
     return(
         <main className={classname["bookmark-cnt"]}>
 
