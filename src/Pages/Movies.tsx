@@ -97,9 +97,6 @@ const Movies = ()=> {
                             )
                         })
                     }
-
-                    
-
                 </div>
 
             </div>

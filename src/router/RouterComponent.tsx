@@ -7,6 +7,8 @@ import Movie from "../Pages/Movie";
 import TVseries from "../Pages/TVseries";
 import Bookmark from "../Pages/Bookmark";
 import SearchResult from "../Pages/SearchResult";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
 
 
 
@@ -15,17 +17,21 @@ const RouterComponent = ()=> {
    
     return(
         <BrowserRouter>
-        <ScrottToTop />
-            <Routes>
-                <Route element={<Layout />}>
-                    <Route path={"/"} element={<Home />} />
-                    <Route path={"/movies"} element={<Movies />} />
-                    <Route path={"/movie/:movieTitle"} element={<Movie />} />
-                    <Route path={"/tv-series"} element={<TVseries />} />
-                    <Route path={"/bookmark"} element={<Bookmark />} />
-                    <Route path={"/search"} element={<SearchResult />} />
-                </Route>
-            </Routes>
+            <ScrottToTop />
+                <Routes>
+                    <Route element={<Layout />}>
+                        <Route path={"/"} element={<Home />} />
+                        <Route path={"/movies"} element={<Movies />} />
+                        <Route path={"/movie/:movieTitle"} element={<Movie />} />
+                        <Route path={"/tv-series"} element={<TVseries />} />
+                        <Route path={"/bookmark"} element={<Bookmark />} />
+                        <Route path={"/search"} element={<SearchResult />} />
+
+
+                        <Route path={"/login"} element={<Login />} />
+                        <Route path={"/register"} element={<Register />} />
+                    </Route>
+                </Routes>
         </BrowserRouter>
     )
 }
