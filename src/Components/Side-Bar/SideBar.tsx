@@ -18,7 +18,6 @@ const SideBar = ()=> {
     
     const handlClearSearchText = ()=> {
         setSearchText("")
-        console.log("cl")
     }
 
     return(

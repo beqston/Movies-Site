@@ -7,8 +7,8 @@ function App() {
 
   return (
     <>
-    <BookmarkContextProvider>
-      <RouterComponent />
+      <BookmarkContextProvider>
+        <RouterComponent />
       </BookmarkContextProvider>
     </>
   )

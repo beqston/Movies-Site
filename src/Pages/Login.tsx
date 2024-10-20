@@ -1,10 +1,69 @@
 import "../assets/style/Login.scss"
 import videoPlay from "../assets/Photos/side-bar/movie.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext";
 const Login = ()=> {
 
-    const textErr = false;
+    const { isLogin, setIsLogin} = useContext(BookmarkContext) as BookmarkContextType;
 
+    
+    const [error, setError] = useState({
+        emailError:false,
+        passwordError: false,
+    })
+    const [formData, setFormData] = useState({
+        email:"",
+        password:"",
+        rePassword:""
+    })
+
+    const [userValue, setUserValue] = useState({
+        email:"",
+        password:"",
+    })
+    
+    useEffect(()=> {
+        const saveUser = localStorage.getItem("formData")
+        if(saveUser){
+           setIsLogin(true)
+        }
+    }, [isLogin])
+
+
+    const navigate = useNavigate()
+
+
+    const handleLogin = (e:React.ChangeEvent<HTMLInputElement>)=> {
+        setUserValue((prev)=> ({...prev, [e.target.name]: e.target.value}))
+    }
+
+    const handelSubmit = (e:React.FormEvent<HTMLFormElement>)=> {
+        e.preventDefault();
+
+        if(formData.email == "" || formData.password == "") return
+
+        if(userValue.email !== formData.email){
+            setError((prev)=> ({...prev, emailError: true}))
+        }else{
+            setError((prev)=> ({...prev, emailError: false}))
+        }
+
+        if(userValue.password !== formData.password){
+            setError((prev)=> ({...prev, passwordError: true}))
+        }else{
+            setError((prev)=> ({...prev, passwordError: false}))
+        }
+        
+        if (Object.values(error).every((error) => !error)){
+            if(userValue.email == formData.email){
+                if(userValue.password == formData.password){
+                    if(userValue.password == formData.rePassword)
+                    navigate("/")
+                }
+            }
+        }
+    }
 
 
     return(
@@ -14,27 +73,27 @@ const Login = ()=> {
                 <img src={videoPlay} alt="Video Play" />
             </div>
 
-            <form>
+            <form onSubmit={handelSubmit}>
                 <div className="login-cnt">
 
                     <h2>Login</h2>
 
                     <div className="input-wrapper">
-                        <input type="text" placeholder="Email address" />
+                        <input type="text" placeholder="Email address" value={userValue.email} onChange={handleLogin} name="email"  />
                         {
-                            textErr && <span>Can’t be empty</span>
+                           error.emailError  && <span>Can’t be empty</span>
                         }
                     </div>
 
                     <div className="input-wrapper">
-                        <input type="password" placeholder="Password" />
+                        <input type="password" placeholder="Password"  onChange={handleLogin} name="password"/>
                         {
-                            textErr && <span>Can’t be empty</span>
+                            error.passwordError && <span>Can’t be empty</span>
                         }
                     </div>
 
                     <div className="btn">
-                        <button type="button">
+                        <button type="submit">
                           Login to your account
                         </button>
                     </div>

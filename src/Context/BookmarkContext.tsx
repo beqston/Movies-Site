@@ -5,6 +5,8 @@ export interface BookmarkContextType {
     bookmarkMovies: Data[] | null;
     bookmarkTVSeries: Data[] | null;
     searchText: string;
+    isLogin: boolean;
+    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
     setSearchText: React.Dispatch<React.SetStateAction<string>>;
     setBookmarkMovies: React.Dispatch<React.SetStateAction<Data[] | null>>;
     setBookmarkTVSeries: React.Dispatch<React.SetStateAction<Data[] | null>>;
@@ -17,10 +19,12 @@ export const BookmarkContext = createContext<BookmarkContextType | undefined>(un
 
 
 const BookmarkContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [bookmarkMovies, setBookmarkMovies] = useState<Data[]>([]);
-    const [bookmarkTVSeries, setBookmarkTVSeries] = useState<Data[]>([]);
+    const [bookmarkMovies, setBookmarkMovies] = useState<Data[] | null>([]);
+    const [bookmarkTVSeries, setBookmarkTVSeries] = useState<Data[] | null>([]);
 
     const [searchText, setSearchText] = useState("");
+
+    const [isLogin, setIsLogin] = useState(false);
 
     const addBookmark = (item: Data)=> {
         if(item.category === "Movie"){
@@ -57,7 +61,7 @@ const BookmarkContextProvider = ({ children }: { children: React.ReactNode }) =>
 
 
     return (
-        <BookmarkContext.Provider value={{ bookmarkMovies, bookmarkTVSeries, setBookmarkMovies, setBookmarkTVSeries, addBookmark, removeBookmark, searchText, setSearchText }}>
+        <BookmarkContext.Provider value={{ bookmarkMovies, bookmarkTVSeries, setBookmarkMovies, setBookmarkTVSeries, addBookmark, removeBookmark, searchText, setSearchText, isLogin, setIsLogin }}>
             {children}
         </BookmarkContext.Provider>
     );
