@@ -7,6 +7,7 @@ import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext
 
 const Register = ()=> {
     const { isLogin, setIsLogin} = useContext(BookmarkContext) as BookmarkContextType;
+    const navigate = useNavigate();
 
 
     const [formData, setFormData] = useState({
@@ -23,19 +24,26 @@ const Register = ()=> {
 
 
     useEffect(()=> {
-        localStorage.setItem("formData", JSON.stringify(formData))
+        if(formData.email.length > 3 && formData.password.length > 3 && formData.rePassword.length > 3){
+            localStorage.setItem("formData", JSON.stringify(formData))
+        }else{
+            localStorage.removeItem("formData")
+        }
     }, [formData])
 
     useEffect(()=> {
         const saveUser = localStorage.getItem("formData")
         if(saveUser){
-           setIsLogin(true)
+           if(formData.password == formData.rePassword){
+             setIsLogin(true)
+           }else{
+            localStorage.removeItem("isLogin")
+           }
         }
     }, [isLogin])
 
 
-
-    const navigate = useNavigate()
+    
 
     const submitValid = ()=> {
         if(formData.email === ""){
@@ -63,6 +71,7 @@ const Register = ()=> {
         }
 
     }
+    
 
     useEffect(()=>{
         submitValid()
@@ -118,7 +127,7 @@ const Register = ()=> {
 
                     <div className="btn">
                         <button type="submit">
-                          Login to your account
+                            Create an account
                         </button>
                     </div>
                     
