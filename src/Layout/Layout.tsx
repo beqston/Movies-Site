@@ -17,15 +17,23 @@ const Layout = ()=> {
 
 
     useLayoutEffect(() => {
-        if (!isLogin) {
-            if (pathname !== "/register") {
-                navigate("login");
+        const getItem = localStorage.getItem("isLogin")
+
+        if(getItem){
+           const isLogin = Boolean(JSON.parse(getItem))
+
+            if (!isLogin) {
+                if (pathname !== "/register") {
+                    navigate("login");
+                }
+            }
+    
+            if(isLogin && pathname == "/login"){
+                navigate("/")
             }
         }
+        
 
-        if(isLogin && pathname == "/login"){
-            navigate("/")
-        }
     }, [isLogin, pathname]);
 
     return(
