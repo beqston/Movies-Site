@@ -87,6 +87,7 @@ const Register = ()=> {
         submitValid()
 
         if(Object.values(errorFormData).every((error)=> !error)){
+            localStorage.setItem("isLogin", JSON.stringify(true))
             navigate("/")
         }
         

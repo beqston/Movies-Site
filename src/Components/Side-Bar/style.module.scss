@@ -11,6 +11,35 @@
     padding-right: 0.8rem;
     border-radius: 20px;
 
+    .modal{
+        width: 30rem;
+        position: absolute;
+        top: 20rem;
+        left: 40rem;
+        height: 20rem;
+        background-color: white;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 2rem;
+        border-radius: 20px;
+
+
+        div{
+            display: flex;
+            justify-content: space-evenly;
+
+            button{
+                background-color: #273149;
+                border-radius: 8px;
+                padding: 14px;
+                color: white;
+            }
+        }
+
+    }
+
     .movie{
         padding-bottom: 7rem;
         padding-top: 3.5rem;
@@ -64,10 +93,16 @@
     }
 }
 
+
 @media screen and (max-width: 978px){
     .side-bar{
         padding-left: 1.2rem;
         padding-right: 1.2rem;
+
+        .modal{
+            left: 7rem;
+            top: 10px;
+        }
         .movie{
             img{
                 width: 2.4rem;
@@ -83,5 +118,12 @@
         }
 
     }
+}
 
+@media screen and (max-width: 390px){
+    .side-bar{
+        .modal{
+           width: 22rem;
+        }
+    }
 }

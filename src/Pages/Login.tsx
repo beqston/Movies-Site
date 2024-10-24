@@ -1,7 +1,7 @@
 import "../assets/style/Login.scss"
 import videoPlay from "../assets/Photos/side-bar/movie.png"
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext";
 
 
@@ -20,6 +20,14 @@ const Login = ()=> {
         rePassword:""
     })
 
+        useLayoutEffect(()=> {
+            const getFormData = localStorage.getItem("formData")
+            if(getFormData){
+                setFormData(JSON.parse(getFormData))
+            }
+        }, [])
+
+
     const [userValue, setUserValue] = useState({
         email:"",
         password:"",
@@ -29,7 +37,10 @@ const Login = ()=> {
         const saveUser = localStorage.getItem("formData")
         if(saveUser){
            setIsLogin(true)
+        }else{
+            setIsLogin(false)
         }
+
     }, [isLogin])
 
 
@@ -43,7 +54,6 @@ const Login = ()=> {
     const handelSubmit = (e:React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
 
-        if(formData.email == "" || formData.password == "") return
 
         if(userValue.email !== formData.email){
             setError((prev)=> ({...prev, emailError: true}))
@@ -60,8 +70,11 @@ const Login = ()=> {
         if (Object.values(error).every((error) => !error)){
             if(userValue.email == formData.email){
                 if(userValue.password == formData.password){
-                    if(userValue.password == formData.rePassword)
-                    navigate("/")
+                    if(userValue.password == formData.rePassword){
+                        localStorage.setItem("isLogin", JSON.stringify(true))
+                        navigate("/")
+                    }
+                    
                 }
             }
         }

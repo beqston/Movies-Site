@@ -8,12 +8,7 @@ const Layout = ()=> {
     const navigate = useNavigate()
     const {pathname} = useLocation()
 
-    useEffect(()=> {
-        if(isLogin){
-            localStorage.setItem("isLogin", JSON.stringify(isLogin))
-        }
-        
-    }, [isLogin])
+
 
 
     useLayoutEffect(() => {
@@ -28,9 +23,9 @@ const Layout = ()=> {
                 }
             }
     
-            if(isLogin && pathname == "/login"){
-                navigate("/")
-            }
+            // if(isLogin && pathname == "/login"){
+            //     navigate("/")
+            // }
         }
         
 

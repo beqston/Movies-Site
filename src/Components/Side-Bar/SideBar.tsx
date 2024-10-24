@@ -6,23 +6,51 @@ import tv from "../../assets/Photos/side-bar/tv.png"
 import bookmark from "../../assets/Photos/side-bar/Bookmark.png"
 import profileImg from "../../assets/Photos/side-bar/profileImg.png"
 import { useNavigate } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { BookmarkContext, BookmarkContextType } from "../../Context/BookmarkContext"
 
 const SideBar = ()=> {
 
     const navigate = useNavigate();
 
-    const { setSearchText} = useContext(BookmarkContext) as BookmarkContextType;
+    const { setSearchText, isLogin, setIsLogin} = useContext(BookmarkContext) as BookmarkContextType;
+    const [loginOut, setLoginOut] = useState(false)
 
     
     const handlClearSearchText = ()=> {
         setSearchText("")
     }
 
+    function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+        setLoginOut(!loginOut)
+      }
+
+      const handleLogOut = ()=> {
+        localStorage.setItem("isLogin", JSON.stringify(false))
+        navigate("/login")
+      }
+
+
+
     return(
 
         <aside onClick={handlClearSearchText} className={classname["side-bar"]}>
+
+            {
+                loginOut && <div className={classname["modal"]}>
+                    <h2>Are you sure you want to log out?</h2>
+
+                    <div>
+                        <button onClick={()=> setLoginOut(false)}>Cancel</button>
+                        <button onClick={handleLogOut}>Login Out</button>
+                    </div>
+
+            </div>
+            }
 
             <div onClick={()=>navigate("/")} className={classname["movie"]}>
                 <img src={movie} alt="photo" />
@@ -35,7 +63,7 @@ const SideBar = ()=> {
                 <img onClick={()=> navigate("/bookmark")} src={bookmark} alt="photo" />
             </div>
 
-            <div className={classname["profile"]}>
+            <div onClick={scrollToTop} className={classname["profile"]}>
                 <img src={profileImg} alt="photo" />
             </div>
         </aside>
