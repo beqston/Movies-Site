@@ -41,7 +41,8 @@ const SideBar = ()=> {
         <aside onClick={handlClearSearchText} className={classname["side-bar"]}>
 
             {
-                loginOut && <div className={classname["modal"]}>
+                loginOut && 
+                <div className={classname["modal"]}>
                     <h2>Are you sure you want to log out?</h2>
 
                     <div>
@@ -49,7 +50,7 @@ const SideBar = ()=> {
                         <button onClick={handleLogOut}>Login Out</button>
                     </div>
 
-            </div>
+                </div>
             }
 
             <div onClick={()=>navigate("/")} className={classname["movie"]}>

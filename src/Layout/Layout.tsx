@@ -1,41 +1,26 @@
-import { useContext, useEffect, useLayoutEffect } from "react";
+import { useContext, useEffect } from "react";
 import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import ProtectedLayout from "./ProtectedLayout";
+import LoginLayout from "./LoginLayout";
 
-const Layout = ()=> {
+const Layout = () => {
+    const { isLogin, setIsLogin } = useContext(BookmarkContext) as BookmarkContextType;
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
-    const { isLogin} = useContext(BookmarkContext) as BookmarkContextType;
-    const navigate = useNavigate()
-    const {pathname} = useLocation()
-
-
-
-
-    useLayoutEffect(() => {
-        const getItem = localStorage.getItem("isLogin")
-
-        if(getItem){
-           const isLogin = Boolean(JSON.parse(getItem))
-
-            if (!isLogin) {
-                if (pathname !== "/register") {
-                    navigate("login");
-                }
-            }
-    
-            // if(isLogin && pathname == "/login"){
-            //     navigate("/")
-            // }
+    useEffect(() => {
+        // Check login status from localStorage only once on mount.
+        const storedLoginStatus = localStorage.getItem("isLogin");
+        if (storedLoginStatus) {
+            setIsLogin(true)
+        }else{
+            setIsLogin(false)
         }
-        
 
-    }, [isLogin, pathname]);
+    }, [ pathname, navigate, setIsLogin]);
 
-    return(
-        <>
-            <Outlet />
-        </>
-    )
-}
+    return <>{isLogin ? <ProtectedLayout /> : <LoginLayout />}</>;
+};
 
 export default Layout;

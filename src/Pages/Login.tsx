@@ -8,7 +8,6 @@ import { BookmarkContext, BookmarkContextType } from "../Context/BookmarkContext
 const Login = ()=> {
 
     const { isLogin, setIsLogin} = useContext(BookmarkContext) as BookmarkContextType;
-
     
     const [error, setError] = useState({
         emailError:false,
@@ -74,7 +73,6 @@ const Login = ()=> {
                         localStorage.setItem("isLogin", JSON.stringify(true))
                         navigate("/")
                     }
-                    
                 }
             }
         }
